@@ -11,17 +11,19 @@
 		</a>
 		<nav class="flex gap-4 font-thin">
 			{#if $page.data.session}
-				<a href="/dash">Dashboard</a>
 				<em>
 					Hi 👋🏻 <strong>{$page.data.session.user?.name ?? 'User'}</strong>
 				</em>
-				<button class="hover:text-thame-3 hover:underline" on:click={() => signOut()}>
+				<button
+					class="hover:text-thame-3 hover:underline"
+					on:click={() =>
+						signOut({
+							callbackUrl: '/'
+						})}>
 					🚪Keluar
 				</button>
 			{:else}
-				<button class="hover:text-thame-3 hover:underline" on:click={() => signIn('google')}>
-					Masuk dengan Google 🔓
-				</button>
+				<a href="/auth" class="hover:text-thame-3 hover:underline"> Masuk 🔓 </a>
 			{/if}
 		</nav>
 	</div>
